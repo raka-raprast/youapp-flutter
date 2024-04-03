@@ -100,7 +100,7 @@ class ChatListScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                FabricText("userA"),
+                                FabricText("userB"),
                                 SizedBox(
                                   height: 5,
                                 ),

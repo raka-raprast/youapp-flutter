@@ -90,7 +90,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    color: Colors.blue,
                     borderRadius: BorderRadius.circular(999),
                   ),
                 ),

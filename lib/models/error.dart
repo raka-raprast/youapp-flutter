@@ -6,8 +6,8 @@ String errorHandlerToJson(ErrorHandler data) => json.encode(data.toJson());
 
 class ErrorHandler {
   String? message;
-  String error;
-  int statusCode;
+  String? error;
+  int? statusCode;
 
   ErrorHandler({
     required this.message,
@@ -21,7 +21,7 @@ class ErrorHandler {
             : json["message"] is List
                 ? json["message"].first
                 : json["message"],
-        error: json["error"],
+        error: json["error"] ?? "",
         statusCode: json["statusCode"],
       );
 

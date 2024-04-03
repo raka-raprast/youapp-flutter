@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -29,6 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           user = User.fromJson(userData);
           emit(AuthLoginState(token: data, user: user!));
         } else {
+          log(response.toString());
           emit(AuthErrorState(error: ErrorHandler.fromJson(response)));
         }
       },
@@ -53,9 +56,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoadingState());
       SharedPreferences pref = await SharedPreferences.getInstance();
       var data = pref.getString("authToken");
-      token = data;
-
-      if (data != null) {
+      if (data != null && data != "null") {
+        token = data;
         var userData = JwtDecoder.decode(data);
         user = User.fromJson(userData);
         emit(AuthLoginState(token: data, user: user!));

@@ -61,7 +61,7 @@ class _AddInterestScreenState extends State<AddInterestScreen> {
             content: Padding(
               padding: const EdgeInsets.only(top: 5, left: 10, bottom: 15),
               child: Text(
-                stateProfile.error.message ?? "Something wrong please try again",
+                stateProfile.error.message ?? "Something went wrong please try again",
               ),
             ),
           );

@@ -1,7 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -23,10 +22,12 @@ class ProfileService {
         ),
       );
     } on DioException catch (e) {
+      if (e.error.toString().contains("SocketException")) {
+        return {"message": "The server is currently down", "error": "SocketException"};
+      }
       var parsedResponse = jsonDecode(e.response.toString());
       return parsedResponse;
     }
-    log(response.toString());
     var parsedResponse = jsonDecode(response.toString());
     return parsedResponse;
   }
@@ -54,7 +55,9 @@ class ProfileService {
         ),
       );
     } on DioException catch (e) {
-      log(e.toString());
+      if (e.error.toString().contains("SocketException")) {
+        return {"message": "The server is currently down", "error": "SocketException"};
+      }
       var parsedResponse = jsonDecode(e.response.toString());
       return parsedResponse;
     }
@@ -68,7 +71,6 @@ class ProfileService {
   }) async {
     Response? response;
     try {
-      log(profile.interests.toString());
       response = await dio.put(
         "$endPoint/api/updateProfile",
         data: {
@@ -86,7 +88,9 @@ class ProfileService {
         ),
       );
     } on DioException catch (e) {
-      log(e.toString());
+      if (e.error.toString().contains("SocketException")) {
+        return {"message": "The server is currently down", "error": "SocketException"};
+      }
       var parsedResponse = jsonDecode(e.response.toString());
       return parsedResponse;
     }
@@ -117,6 +121,9 @@ class ProfileService {
         ),
       );
     } on DioException catch (e) {
+      if (e.error.toString().contains("SocketException")) {
+        return {"message": "The server is currently down", "error": "SocketException"};
+      }
       var parsedResponse = jsonDecode(e.response.toString());
       return parsedResponse;
     }

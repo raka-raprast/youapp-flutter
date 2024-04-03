@@ -26,7 +26,7 @@ class AuthMainScreen extends StatelessWidget {
             content: Padding(
               padding: const EdgeInsets.only(top: 5, left: 10, bottom: 15),
               child: Text(
-                authState.error.message ?? "Something wrong please try again",
+                authState.error.message ?? "Something went wrong please try again",
               ),
             ),
           );

@@ -25,6 +25,9 @@ class AuthService {
         ),
       );
     } on DioException catch (e) {
+      if (e.error.toString().contains("SocketException")) {
+        return {"message": "The server is currently down", "error": "SocketException"};
+      }
       var parsedResponse = jsonDecode(e.response.toString());
       return parsedResponse;
     }
@@ -53,6 +56,9 @@ class AuthService {
         ),
       );
     } on DioException catch (e) {
+      if (e.error.toString().contains("SocketException")) {
+        return {"message": "The server is currently down", "error": "SocketException"};
+      }
       var parsedResponse = jsonDecode(e.response.toString());
       return parsedResponse;
     }
